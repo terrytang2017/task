@@ -182,7 +182,7 @@ public final class LiteJobConfiguration implements JobRootConfiguration {
          * 设置作业分片策略实现类全路径.
          *
          * <p>
-         * 默认使用{@code io.elasticjob.lite.api.strategy.impl.AverageAllocationJobShardingStrategy}.
+         * 默认使用{@code com.diwayou.task.api.strategy.impl.AverageAllocationJobShardingStrategy}.
          * </p>
          *
          * @param jobShardingStrategyClass 作业分片策略实现类全路径

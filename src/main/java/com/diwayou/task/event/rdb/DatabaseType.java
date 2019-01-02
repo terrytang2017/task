@@ -17,11 +17,8 @@
 
 package com.diwayou.task.event.rdb;
 
-import com.google.common.base.Optional;
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterators;
-
 import java.util.Arrays;
+import java.util.Optional;
 
 /**
  * 支持的数据库类型.
@@ -45,12 +42,10 @@ public enum DatabaseType {
      * @return 数据库类型枚举
      */
     public static DatabaseType valueFrom(final String databaseProductName) {
-        Optional<DatabaseType> databaseTypeOptional = Iterators.tryFind(Arrays.asList(DatabaseType.values()).iterator(), new Predicate<DatabaseType>() {
-            @Override
-            public boolean apply(final DatabaseType input) {
-                return input.productName.equals(databaseProductName);
-            }
-        });
+        Optional<DatabaseType> databaseTypeOptional = Arrays.stream(DatabaseType.values())
+                .filter(input -> input.productName.equals(databaseProductName))
+                .findAny();
+
         if (databaseTypeOptional.isPresent()) {
             return databaseTypeOptional.get();
         } else {

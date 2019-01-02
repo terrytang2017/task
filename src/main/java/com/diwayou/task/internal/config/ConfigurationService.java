@@ -23,7 +23,8 @@ import com.diwayou.task.exception.JobExecutionEnvironmentException;
 import com.diwayou.task.internal.storage.JobNodeStorage;
 import com.diwayou.task.reg.base.CoordinatorRegistryCenter;
 import com.diwayou.task.util.env.TimeService;
-import com.google.common.base.Optional;
+
+import java.util.Optional;
 
 /**
  * 弹性化分布式作业配置服务.
@@ -83,14 +84,14 @@ public final class ConfigurationService {
 
     private Optional<LiteJobConfiguration> find() {
         if (!jobNodeStorage.isJobNodeExisted(ConfigurationNode.ROOT)) {
-            return Optional.absent();
+            return Optional.empty();
         }
         LiteJobConfiguration result = LiteJobConfigurationGsonFactory.fromJson(jobNodeStorage.getJobNodeDataDirectly(ConfigurationNode.ROOT));
         if (null == result) {
             // TODO 应该删除整个job node,并非仅仅删除config node
             jobNodeStorage.removeJobNodeIfExisted(ConfigurationNode.ROOT);
         }
-        return Optional.fromNullable(result);
+        return Optional.ofNullable(result);
     }
 
     /**

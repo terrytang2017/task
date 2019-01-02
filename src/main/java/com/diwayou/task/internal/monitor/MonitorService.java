@@ -75,19 +75,15 @@ public final class MonitorService {
 
     private void openSocketForMonitor(final int port) throws IOException {
         serverSocket = new ServerSocket(port);
-        new Thread() {
-
-            @Override
-            public void run() {
-                while (!closed) {
-                    try {
-                        process(serverSocket.accept());
-                    } catch (final IOException ex) {
-                        log.error("Elastic job: Monitor service open socket for monitor failure, error is: ", ex);
-                    }
+        new Thread(() -> {
+            while (!closed) {
+                try {
+                    process(serverSocket.accept());
+                } catch (final IOException ex) {
+                    log.error("Elastic job: Monitor service open socket for monitor failure, error is: ", ex);
                 }
             }
-        }.start();
+        }).start();
     }
 
     private void process(final Socket socket) throws IOException {
