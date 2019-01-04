@@ -36,6 +36,11 @@ public final class DataflowJobConfiguration implements JobTypeConfiguration {
 
     private final String jobClass;
 
+    /**
+     * 是否流式处理数据
+     * 如果流式处理数据, 则fetchData不返回空结果将持续执行作业
+     * 如果非流式处理数据, 则处理数据完成后作业结束
+     */
     private final boolean streamingProcess;
 
     public DataflowJobConfiguration(JobCoreConfiguration coreConfig, String jobClass, boolean streamingProcess) {

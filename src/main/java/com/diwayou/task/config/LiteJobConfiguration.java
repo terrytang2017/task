@@ -169,6 +169,8 @@ public final class LiteJobConfiguration implements JobRootConfiguration {
 
         /**
          * 设置作业辅助监控端口.
+         * 建议配置作业监控端口, 方便开发者dump作业信息。
+         * 使用方法: echo “dump” | nc 127.0.0.1 9888
          *
          * @param monitorPort 作业辅助监控端口
          * @return 作业配置构建器

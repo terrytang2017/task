@@ -151,6 +151,8 @@ public final class JobCoreConfiguration {
          *
          * <p>
          * 可以配置多个相同的作业, 但是用不同的参数作为不同的调度实例.
+         * 作业自定义参数，可通过传递该参数为作业调度的业务方法传参，用于实现带参数的作业
+         * 例：每次获取的数据量、作业实例从数据库读取的主键等
          * </p>
          *
          * @param jobParameter 作业自定义参数
@@ -165,6 +167,7 @@ public final class JobCoreConfiguration {
 
         /**
          * 设置是否开启失效转移.
+         * 开启表示如果作业在一次任务执行中途宕机，允许将该次未完成的任务在另一作业节点上补偿执行
          *
          * <p>
          * 只有对monitorExecution的情况下才可以开启失效转移.
@@ -180,6 +183,7 @@ public final class JobCoreConfiguration {
 
         /**
          * 设置是否开启misfire.
+         * 是否开启错过任务重新执行
          *
          * @param misfire 是否开启misfire
          * @return 作业配置构建器
@@ -204,6 +208,9 @@ public final class JobCoreConfiguration {
 
         /**
          * 设置作业属性.
+         * 配置jobProperties定义的枚举控制Elastic-Job的实现细节
+         * JOB_EXCEPTION_HANDLER用于扩展异常处理类
+         * EXECUTOR_SERVICE_HANDLER用于扩展作业处理线程池类
          *
          * @param key   属性键
          * @param value 属性值

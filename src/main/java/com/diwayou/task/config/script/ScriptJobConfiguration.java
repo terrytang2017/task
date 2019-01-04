@@ -36,6 +36,9 @@ public final class ScriptJobConfiguration implements JobTypeConfiguration {
 
     private final String jobClass = ScriptJob.class.getCanonicalName();
 
+    /**
+     * 脚本型作业执行命令行
+     */
     private final String scriptCommandLine;
 
     public ScriptJobConfiguration(JobCoreConfiguration coreConfig, String scriptCommandLine) {
